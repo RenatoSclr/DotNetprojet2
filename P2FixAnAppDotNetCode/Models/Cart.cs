@@ -8,6 +8,8 @@ namespace P2FixAnAppDotNetCode.Models
     /// </summary>
     public class Cart : ICart
     {
+        //New cartline list to serve as a gateway
+        private List<CartLine> cartLines = new List<CartLine>();
         /// <summary>
         /// Read-only property for display only
         /// </summary>
@@ -19,7 +21,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// <returns></returns>
         private List<CartLine> GetCartLineList()
         {
-            return new List<CartLine>();
+            return cartLines; // bugfix, the method returns a new list in return
         }
 
         /// <summary>
@@ -27,7 +29,19 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>//
         public void AddItem(Product product, int quantity)
         {
-            // TODO implement the method
+            // Implementing the method for adding a product to the cart
+            var existingLine = cartLines.FirstOrDefault(l => l.Product.Id == product.Id);
+
+            if (existingLine != null)
+            {
+                // If the product is already in the cart, increment the quantity
+                existingLine.Quantity += quantity;
+            }
+            else
+            {
+                // If not, add a new line to the cart
+                cartLines.Add(new CartLine { Product = product, Quantity = quantity });
+            }
         }
 
         /// <summary>
