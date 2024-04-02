@@ -34,8 +34,18 @@ namespace P2FixAnAppDotNetCode.Models
 
             if (existingLine != null)
             {
-                // If the product is already in the cart, increment the quantity
-                existingLine.Quantity += quantity;
+                if (existingLine.Product.Stock == existingLine.Quantity)
+                {
+                    // If cart quantity equals stock quantity, does not add product to cart
+
+                    // Maybe display a message to the user when he can no longer add to the cart ?
+                    return;
+                }
+                else
+                {
+                    // If the product is already in the cart, increment the quantity
+                    existingLine.Quantity += quantity;
+                }
             }
             else
             {
@@ -75,8 +85,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public Product FindProductInCartLines(int productId)
         {
-            // TODO implement the method
-            return null;
+            return cartLines.FirstOrDefault(p => p.Product.Id == productId).Product;
         }
 
         /// <summary>
