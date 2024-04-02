@@ -30,7 +30,7 @@ namespace P2FixAnAppDotNetCode.Models
         public void AddItem(Product product, int quantity)
         {
             // Implementing the method for adding a product to the cart
-            var existingLine = cartLines.FirstOrDefault(l => l.Product.Id == product.Id);
+            var existingLine = GetCartLineList().FirstOrDefault(l => l.Product.Id == product.Id);
 
             if (existingLine != null)
             {
@@ -50,7 +50,7 @@ namespace P2FixAnAppDotNetCode.Models
             else
             {
                 // If not, add a new line to the cart
-                cartLines.Add(new CartLine { Product = product, Quantity = quantity });
+                GetCartLineList().Add(new CartLine { Product = product, Quantity = quantity });
             }
         }
 
