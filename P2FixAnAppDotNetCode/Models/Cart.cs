@@ -55,8 +55,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetTotalValue()
         {
-            // TODO implement the method
-            return 0.0;
+            return GetCartLineList().Sum(cart => cart.Product.Price * cart.Quantity); // Calculates the sum total of the prices of the items in the cart
         }
 
         /// <summary>
@@ -64,7 +63,10 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetAverageValue()
         {
-            // TODO implement the method
+            if (cartLines.Count > 0)
+            {
+                return GetCartLineList().Average(cart => cart.Product.Price); // Calculates the average price of items in the cart
+            }
             return 0.0;
         }
 
