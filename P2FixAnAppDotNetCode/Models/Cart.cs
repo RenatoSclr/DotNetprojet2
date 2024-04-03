@@ -31,7 +31,7 @@ namespace P2FixAnAppDotNetCode.Models
         {
             // Implementing the method for adding a product to the cart
             var existingLine = GetCartLineList().FirstOrDefault(l => l.Product.Id == product.Id);
-
+            
             if (existingLine != null)
             {
                 if (existingLine.Product.Stock == existingLine.Quantity)
@@ -50,7 +50,7 @@ namespace P2FixAnAppDotNetCode.Models
             else
             {
                 // If not, add a new line to the cart
-                GetCartLineList().Add(new CartLine { Product = product, Quantity = quantity });
+                GetCartLineList().Add(new CartLine { Product = product, Quantity = quantity, OrderLineId = cartLines.Count + 1 });
             }
         }
 
@@ -75,7 +75,7 @@ namespace P2FixAnAppDotNetCode.Models
         {
             if (cartLines.Count > 0)
             {
-                return GetCartLineList().Average(cart => cart.Product.Price); // Calculates the average price of items in the cart
+                return GetTotalValue() / GetCartLineList().Sum(cart => cart.Quantity); // Calculates the average price of items in the cart
             }
             return 0.0;
         }
@@ -85,7 +85,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public Product FindProductInCartLines(int productId)
         {
-            return cartLines.FirstOrDefault(p => p.Product.Id == productId).Product;
+            return GetCartLineList().FirstOrDefault(p => p.Product.Id == productId).Product;
         }
 
         /// <summary>
