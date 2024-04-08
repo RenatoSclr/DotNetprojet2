@@ -24,7 +24,6 @@ namespace P2FixAnAppDotNetCode.Tests
 
             Assert.IsType<List<Product>>(products);
             //Assert.IsType<Product[]>(products);
-
         }
 
         [Fact]

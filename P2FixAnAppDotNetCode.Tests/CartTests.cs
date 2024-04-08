@@ -73,5 +73,16 @@ namespace P2FixAnAppDotNetCode.Tests
 
             Assert.NotNull(result);
         }
+        [Fact]
+        public void DoNotFindProductInCartLines()
+        {
+            Cart cart = new Cart();
+            Product product = new Product(999, 0, 20, "name", "description");
+
+            cart.AddItem(product, 1);
+            Product result = cart.FindProductInCartLines(998);
+
+            Assert.Null(result);
+        }
     }
 }
