@@ -34,13 +34,11 @@ namespace P2FixAnAppDotNetCode.Models
 
                 // If the product is already in the cart, increment the quantity
                 existingLine.Quantity += quantity;
+                return;
             }
-            else
-            {
-                //If not, add a new line to the cart
-                CartLines.Add(new CartLine { Product = product, Quantity = quantity, OrderLineId = CartLines.Count + 1 });
-            };
-            
+
+            //If not, add a new line to the cart
+             CartLines.Add(new CartLine { Product = product, Quantity = quantity, OrderLineId = CartLines.Count + 1 });
         }
 
         /// <summary>
@@ -54,7 +52,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetTotalValue()
         {
-            return CartLines.Sum(cart => cart.Product.Price * cart.Quantity); // Calculates the sum total of the prices of the items in the cart
+            return CartLines.Sum(cart => cart.Product.Price * cart.Quantity); 
         }
 
         /// <summary>
@@ -64,7 +62,7 @@ namespace P2FixAnAppDotNetCode.Models
         {
             if (CartLines.Count > 0)
             {
-                return GetTotalValue() / CartLines.Sum(cart => cart.Quantity); // Calculates the average price of items in the cart
+                return GetTotalValue() / CartLines.Sum(cart => cart.Quantity); 
             }
             return 0.0;
         }
