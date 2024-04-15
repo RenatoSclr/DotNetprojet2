@@ -23,8 +23,6 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public string SetCulture(string language)
         {
             string culture = "";
-            //Implementation of a switch that retrieves the language value when the user chooses a language 
-            //Changes the culture according to the language chosen
             switch (language)
             {
                 case "French":

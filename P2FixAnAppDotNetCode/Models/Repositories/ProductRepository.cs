@@ -12,7 +12,7 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
 
         public ProductRepository()
         {
-            if (_products == null)// if the product list has already been created, we ensure that it is not created again once the products have been removed from stock
+            if (_products == null)
             {
                 _products = new List<Product>();
                 GenerateProductData();
@@ -36,7 +36,7 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
         /// <summary>
         /// Get all products from the inventory
         /// </summary>
-        public List<Product> GetAllProducts() // Change GetAllProduct return type from an Array (Product[]) to a list of product objects (List<Product>)
+        public List<Product> GetAllProducts() 
         {
             return _products.Where(p => p.Stock > 0).OrderBy(p => p.Name).ToList();
         }

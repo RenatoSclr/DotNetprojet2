@@ -18,7 +18,7 @@ namespace P2FixAnAppDotNetCode.Controllers
 
         public IActionResult Index()
         {
-            List<Product> products = _productService.GetAllProducts();  // Change GetAllProduct return type from an Array (Product[]) to a list of product objects (List<Product>)
+            List<Product> products = _productService.GetAllProducts();
             return View(products);
         }
     }
