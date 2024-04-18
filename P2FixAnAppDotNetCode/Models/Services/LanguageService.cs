@@ -34,6 +34,9 @@ namespace P2FixAnAppDotNetCode.Models.Services
                 case "English":
                     culture = "en"; // English culture
                     break;
+                default:
+                    culture = "en";
+                    break;
             }
             return culture;
         }
