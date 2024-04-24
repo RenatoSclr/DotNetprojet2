@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DemoEnding" xml:space="preserve">
-    <value>Estamos tramitando su pedido. En unos segundos se le redirigirá a la página de presentación del producto.</value>
+    <value>Estamos procesando su pedido. Será redirigido a la página de inicio en 10 segundos.</value>
   </data>
   <data name="Thanks" xml:space="preserve">
     <value>¡Gracias!</value>
