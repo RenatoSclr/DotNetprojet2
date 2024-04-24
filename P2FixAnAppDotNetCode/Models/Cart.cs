@@ -9,16 +9,11 @@ namespace P2FixAnAppDotNetCode.Models
     public class Cart : ICart
     {
         private List<CartLine> CartLines { get; } = new List<CartLine>();
+
         /// <summary>
         /// Read-only property for display only
         /// </summary>
         public IEnumerable<CartLine> Lines => CartLines;
-
-        /// <summary>
-        /// Return the actual cartline list
-        /// </summary>
-        /// <returns></returns>
-        
 
         /// <summary>
         /// Adds a product in the cart or increment its quantity in the cart if already added
