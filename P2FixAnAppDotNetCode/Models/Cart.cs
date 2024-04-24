@@ -25,7 +25,23 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>//
         public void AddItem(Product product, int quantity)
         {
-            // TODO implement the method
+            var existingLine = CartLines.FirstOrDefault(l => l.Product.Id == product.Id);
+
+            if (existingLine != null)
+            {
+                if (existingLine.Product.Stock == existingLine.Quantity)
+                {
+                    // If cart quantity equals stock quantity, does not add product to cart
+                    return;
+                }
+
+                // If the product is already in the cart, increment the quantity
+                existingLine.Quantity += quantity;
+                return;
+            }
+
+            //Add a new line to the cart
+            CartLines.Add(new CartLine { Product = product, Quantity = quantity, OrderLineId = CartLines.Count + 1 });
         }
 
         /// <summary>
